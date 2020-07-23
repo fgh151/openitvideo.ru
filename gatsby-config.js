@@ -1,5 +1,5 @@
 module.exports = {
-    pathPrefix: "/",
+    pathPrefix: "/openitvideo.ru",
     siteMetadata: {
         title: `openitvideo`,
         description: `AVideo collections`,
