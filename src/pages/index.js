@@ -11,7 +11,7 @@ export default function Home() {
             <title>'title</title>
         </Helmet>
         <div>
-            Hello world!
+            Hello worl!
         </div>
     </Layout>
     )

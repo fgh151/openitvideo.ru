@@ -1,8 +1,8 @@
 import React from "react"
-import { Link, StaticQuery, graphql } from "gatsby"
+import {Link, StaticQuery, graphql} from "gatsby"
 import styled from "styled-components"
 
-import { colors } from "../utils/vars"
+import {colors} from "../utils/vars"
 
 const Sidebar = styled.section`
     position: fixed;
@@ -54,30 +54,20 @@ export default () => (
     <StaticQuery
         query={graphql`
         {
-          allVideosJson {
-            edges {
-              node {
-                id,
-                title
-              }
-            }
-          }
-        }
+         allVideosJson {
+            distinct(field: tags)
+         }
+    }
       `}
         render={({
                      allVideosJson: {
-                         edges
+                         distinct
                      }
                  }) => (
             <Sidebar>
                 {
-                    edges.map(({
-                                   node: {
-                                       id,
-                                       title
-                                   }
-                               }) => (
-                        <Link to={id} key={id} css={navItem} >{title}</Link>
+                    distinct.map((tag) => (
+                        <Link to={'/tag/' + tag} key={tag} css={navItem}>{tag}</Link>
                     ))
                 }
             </Sidebar>
