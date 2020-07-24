@@ -10,7 +10,7 @@ const Video = (props) => {
     return (
 
         <div>
-            <div onClick={handleShow}>
+            <div onClick={handleShow} onKeyDown={handleShow} role='button' tabIndex={0}>
                 <img src={'https://img.youtube.com/vi/' + props.video.node.id + '/mqdefault.jpg'}
                      alt={props.video.node.title}/>
                 <p>
@@ -23,6 +23,7 @@ const Video = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <iframe width="560" height="315"
+                            title={props.video.node.title}
                             src={'https://www.youtube.com/embed/' + props.video.node.id}
                             frameBorder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
