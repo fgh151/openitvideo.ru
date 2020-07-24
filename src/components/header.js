@@ -45,7 +45,7 @@ export default () => (
             <Header>
                 That is header
 
-                <Link to="/contribute">Добавить</Link>
+                <Link to="/contribute/">Добавить</Link>
 
                 <Link to="/" css={logoLink}>
                     <Logo src={publicURL} alt="logo" />
