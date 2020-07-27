@@ -1,18 +1,46 @@
 import React from "react"
 import Layout from "../components/layout";
-import { Helmet } from "react-helmet";
+import {Helmet} from "react-helmet";
+import {graphql, StaticQuery} from "gatsby";
+import Video from "../components/video";
 
 export default function Home() {
     return (
+        <Layout>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <title>video</title>
+            </Helmet>
+            <StaticQuery
+                query={graphql`
+        {
+         allVideosJson {
+    edges {
+      node {
+        id
+        tags
+        title
+        url
+      }
+    }
+  }
+    }
+      `}
+                render={({
+                             allVideosJson: {
+                                 edges
+                             }
+                         }) => {
 
-    <Layout>
-        <Helmet>
-            <meta charSet="utf-8" />
-            <title>'title</title>
-        </Helmet>
-        <div>
-            Hello worl!
-        </div>
-    </Layout>
+                    return (
+                        <div>
+                            {edges.map((video) => (
+                                <Video key={video.node.id} video={video}/>
+                            ))}
+                        </div>
+                    )
+                }}
+            />
+        </Layout>
     )
 }
