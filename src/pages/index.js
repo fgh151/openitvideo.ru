@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/layout";
 import {Helmet} from "react-helmet";
-import {graphql, StaticQuery} from "gatsby";
+import {graphql, Link, StaticQuery} from "gatsby";
 import Video from "../components/video";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
             <StaticQuery
                 query={graphql`
         {
-         allVideosJson {
+         allVideosJson(limit: 12) {
     edges {
       node {
         id
@@ -39,6 +39,15 @@ export default function Home() {
                                     <Video video={video}/>
                                 </div>
                             ))}
+                            <div className='col-12'>
+                                <nav aria-label="Page navigation">
+                                    <ul className="pagination">
+                                        <li className="page-item">
+                                            <Link className="page-link" to={'/page/1'}>Все видео</Link>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     )
                 }}

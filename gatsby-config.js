@@ -6,6 +6,36 @@ module.exports = {
     },
   /* Your site config here */
   plugins: [
+
+
+      {
+          resolve: `gatsby-plugin-paginate`,
+          options: {
+              sources: [
+                  {
+                      path: `/page`,
+                      pageSize: 12,
+                      template: `${__dirname}/src/templates/index.js`,
+                      serialize: (results) => results.allVideosJson.edges,
+                      query: `{
+         allVideosJson {
+    edges {
+      node {
+        id
+        tags
+        title
+        url
+      }
+    }
+  }
+    }`
+                  }
+              ]
+          }
+      },
+
+
+
       {
           resolve: `gatsby-plugin-manifest`,
           options: {
