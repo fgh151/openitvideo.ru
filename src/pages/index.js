@@ -33,9 +33,11 @@ export default function Home() {
                          }) => {
 
                     return (
-                        <div>
+                        <div className='row'>
                             {edges.map((video) => (
-                                <Video key={video.node.id} video={video}/>
+                                <div className='col-md-4' key={video.node.id}>
+                                    <Video video={video}/>
+                                </div>
                             ))}
                         </div>
                     )

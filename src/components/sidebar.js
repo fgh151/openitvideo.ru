@@ -1,20 +1,7 @@
 import React from "react"
 import {Link, StaticQuery, graphql} from "gatsby"
-import styled from "styled-components"
 
 import {colors} from "../utils/vars"
-
-const Sidebar = styled.section`
-    position: fixed;
-    left: 0;
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: ${colors.second};
-    color: ${colors.textMain};
-  `
 
 const navItem = `
     display: flex;
@@ -52,26 +39,19 @@ const navItem = `
 
 export default () => (
     <StaticQuery
-        query={graphql`
-        {
-         allVideosJson {
-            distinct(field: tags)
-         }
-    }
-      `}
-        render={({
-                     allVideosJson: {
-                         distinct
-                     }
-                 }) => (
-            <Sidebar>
-                {
-                    distinct.map((tag) => (
-                        <Link to={'/tag/' + tag} key={tag} css={navItem}>{tag}</Link>
-                    ))
-                }
-            </Sidebar>
+        query={graphql`{allVideosJson{distinct(field: tags)}}`}
+        render={({allVideosJson: {distinct}}) => (
+            <div className="sidebar-sticky">
+                <ul className="nav flex-column">
+                    {
+                        distinct.map((tag) => (
+                            <li className="nav-item" key={tag}>
+                                <Link className="nav-link active" to={'/tag/' + tag} css={navItem}>{tag}</Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
         )}
     />
-
 )

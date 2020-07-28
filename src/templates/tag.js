@@ -10,21 +10,21 @@ const Tags = ({pageContext, data}) => {
 
     const edges = data.allVideosJson.edges;
 
-
     return (
         <Layout>
             <Helmet>
                 <meta charSet="utf-8"/>
                 <title>{tag}</title>
             </Helmet>
-            <div>
+            <div className='row'>
                 {edges.map((video) => (
-                    <Video key={video.id} video={video} />
+                    <div className='col-md-4' key={video.node.id}>
+                        <Video video={video}/>
+                    </div>
                 ))}
             </div>
         </Layout>
     )
-
 }
 export default Tags
 

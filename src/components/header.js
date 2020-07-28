@@ -1,56 +1,18 @@
 import React from "react";
-import { Link, graphql, StaticQuery } from "gatsby";
-import { colors } from "../utils/vars";
-import styled from "styled-components";
+import { Link} from "gatsby";
 
-const Header = styled.header`
-    width: 100%;
-    height: 3em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: ${colors.main};
-    color: ${colors.textSecond};
-    padding: 0.5em;
-  `;
+const header = () => {
+    return (
+        <div
+            className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom box-shadow">
+            <h5 className="my-0 mr-md-auto font-weight-normal">
+                <Link to='/'>OpenItVideo</Link>
+            </h5>
+            <nav className="my-2 my-md-0 mr-md-3">
+                <Link to="/contribute/" className="p-2 text-dark">Добавить</Link>
+            </nav>
+        </div>
+    )
+}
 
-const Logo = styled.img`
-    border-radius: 50%;
-    height: 100%;
-  `;
-const logoLink = `height: 100%;`;
-
-export default () => (
-    <StaticQuery
-        query={graphql`
-        {
-          allFile(filter: { name: { eq: "logo" } }) {
-            edges {
-              node {
-                publicURL
-              }
-            }
-          }
-        }
-      `}
-        render={({
-                     allFile: {
-                         edges: [
-                             {
-                                 node: { publicURL }
-                             }
-                         ]
-                     }
-                 }) => (
-            <Header>
-                That is header
-
-                <Link to="/contribute/">Добавить</Link>
-
-                <Link to="/" css={logoLink}>
-                    <Logo src={publicURL} alt="logo" />
-                </Link>
-            </Header>
-        )}
-    />
-);
+export default header;
