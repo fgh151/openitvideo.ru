@@ -46,7 +46,7 @@ export default () => (
                     {
                         distinct.map((tag) => (
                             <li className="nav-item" key={tag}>
-                                <Link className="nav-link active" to={'/tag/' + tag} css={navItem}>{tag}</Link>
+                                <Link className="nav-link active" to={'/tag/' + tag.toLowerCase()} css={navItem}>{tag}</Link>
                             </li>
                         ))
                     }
